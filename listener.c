@@ -52,7 +52,7 @@
 #define LISTEN_PORT   12060
 
 /* Used only in SOUND_MODE_WAV: */
-#define WAV_FILE      "/home/sm7iun/handbell.wav"
+#define WAV_FILE      "./handbell.wav"
 
 /* Used in SOUND_MODE_BEEP and SOUND_MODE_ALSA: */
 #define BEEP_FREQ_HZ    880     /* tone frequency  (Hz)               */
@@ -297,7 +297,7 @@ static void process_datagram(const char *buf, size_t len,
     int not_xqso = (strcasecmp(xqso,   "false") == 0);
 
     print_timestamp();
-    printf("PKT  from %-15s  call=%-10s  band=%-5s  mode=%-3s  mult1=%-8s  mult2=%-8s  mult3=%-8s  newqso=%-5s  xqso=%-5s",
+    printf("PKT from %-15s call=%-8s band=%-3s mode=%-3s mult1=%-2s  mult2=%-2s  mult3=%-2s newqso=%-5s xqso=%-5s",
            inet_ntoa(src->sin_addr),
            call[0]   ? call   : "-",
            band[0]   ? band   : "-",
