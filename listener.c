@@ -294,10 +294,9 @@ static void process_datagram(const char *buf, size_t len,
                    (mult2[0] != '\0') ||
                    (mult3[0] != '\0');
     int is_new   = (strcasecmp(newqso, "true")  == 0);
-    int not_xqso = (strcasecmp(xqso,   "false") == 0);
 
     print_timestamp();
-    printf("PKT from %-15s call=%-8s band=%-3s mode=%-3s mult1=%-2s  mult2=%-2s  mult3=%-2s newqso=%-5s xqso=%-5s",
+    printf("PKT from %-15s call=%-8s band=%-3s mode=%-3s mult1=%-2s  mult2=%-2s  mult3=%-2s newqso=%-5s",
            inet_ntoa(src->sin_addr),
            call[0]   ? call   : "-",
            band[0]   ? band   : "-",
@@ -305,11 +304,10 @@ static void process_datagram(const char *buf, size_t len,
            mult1[0]  ? mult1  : "-",
            mult2[0]  ? mult2  : "-",
            mult3[0]  ? mult3  : "-",
-           newqso[0] ? newqso : "-",
-           xqso[0]   ? xqso   : "-");
+           newqso[0] ? newqso : "-");
 
-    if (has_mult && is_new && not_xqso) {
-        printf("  *** MULT → BEEP ***");
+    if (has_mult && is_new) {
+        printf("  *** MULT → SOUND ***");
         fflush(stdout);
         play_sound();
     }
@@ -335,7 +333,7 @@ int main(void)
 
     printf("=== DXLog Multiplier Listener ===\n");
     printf("Port      : UDP %d\n", LISTEN_PORT);
-    printf("Trigger   : mult1/mult2/mult3 non-empty AND newqso=true AND xqso=false\n");
+    printf("Trigger   : mult1/mult2/mult3 non-empty AND newqso=true\n");
     printf("Sound     : %s\n", mode_name);
 #if SOUND_MODE == SOUND_MODE_BEEP || SOUND_MODE == SOUND_MODE_ALSA
     printf("Tone      : %d Hz, %d ms, volume %.0f%%\n",
