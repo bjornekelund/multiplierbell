@@ -52,7 +52,7 @@
 #define LISTEN_PORT   12060
 
 /* Used only in SOUND_MODE_WAV: */
-#define WAV_FILE      "./handbell.wav"
+#define WAV_FILE      "/home/sm7iun/multiplierbell/handbell.wav"
 
 /* Used in SOUND_MODE_BEEP and SOUND_MODE_ALSA: */
 #define BEEP_FREQ_HZ    880     /* tone frequency  (Hz)               */
